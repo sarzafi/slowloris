@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Copyright by SLIM
+# ========================
+#
+data=( `ps aux | grep -i dropbear | awk '{print $2}'`);
+echo "Checking user login";
+echo "---";
+for PID in "${data[@]}"
+do
+#echo "check $PID";
+NUM=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep $P$
+USER=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep $$
+IP=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep $PI$
+if [ $NUM -eq 1 ]; then
+echo "$PID - $USER - $IP";
+fi
+done
+echo "---";
+#echo "unixsitory.wordpress.com";
